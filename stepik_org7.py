@@ -174,8 +174,8 @@ n = int(input())
 x = str(n)
 a = max(x)
 b = min(x)
-print('Максимальная цифра равна',a)
-print('Минимальная цифра равна',b)
+print('Максимальная цифра равна', a)
+print('Минимальная цифра равна', b)
 
 n = int(input())
 minimum = 9
