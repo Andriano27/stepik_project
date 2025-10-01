@@ -291,3 +291,74 @@ for i in range(int(input())):
         list.append(num)
 print(list)
 
+# На вход программе подаются натуральное число n и n строк, а затем число k. Напишите программу,
+# которая выводит k-ую букву из введённых строк на одной строке без пробелов.
+# На вход программе подаются натуральное число n, далее n строк, каждая на отдельной строке.
+# В конце вводится натуральное число k – номер буквы (нумерация начинается с единицы).
+# Если некоторые строки слишком короткие и в них нет символа с заданным номером,
+# то такие строки при выводе нужно игнорировать.
+n = int(input())
+l = []
+ind = ''
+for c in range(n):
+    s = input()
+    l.append(s)
+k = int(input())
+for i in range(len(l)):
+    m = l[i]  # достаем элемент(строку) из списка
+    if k <= len(m):   # сравниваем (к) и длину строки
+        x = m[k - 1]   # позволяет извлечь элемент строки по индексу
+        ind += x  # добавляем полученную переменную в строку
+print(ind)
+
+n = int(input())
+li = []
+for _ in range(n):
+    li.append(input())
+index = int(input())
+res = ''
+for s in li:
+    if len(s) >= index:
+        res += s[index - 1]  # потому что индекс с 0, а символ - с 1
+print(res)
+
+n = int(input())
+seq = []
+for _ in range(n):
+    seq.append(input())
+k = int(input())
+res = ""
+for i in range(n):
+    if len(seq[i]) < k:
+        continue
+    res += seq[i][k - 1]
+print(res)
+
+num = int(input())
+arr = []              # создаём список для последующего наполнения
+for i in range(num):
+    str1 = input()
+    arr.append(str1)  # наполняем список arr
+num2 = int(input())   # вводим номер буквы под индексом
+for j in arr[:]:      # обрабатываем список arr
+    if len(j) >= num2:   # по условию отбираем значения не меньше num2
+        print(j[num2 - 1], end='')  # печатаем букву под индексом num2 -1
+
+# На вход программе подаются натуральное число n, а затем n строк. Напишите программу,
+# которая создает список из символов всех строк, а затем выводит его.
+n = int(input())
+l = []
+for _ in range(n):
+    s = input()
+    l.extend(s)
+print(l)
+
+n = int(input())
+y = []
+for i in range(n):
+    x = input()
+    for k in range(len(x)):
+        z = x[k]
+        y.append(z)
+print(y)
+
