@@ -334,8 +334,8 @@ print("YES" if n < 10 else "NO")
 n = int(input())
 flag = True
 while n > 9:
-    x = n % 10 #  последнее число
-    y = n % 100 // 10 #  предпоследнее число
+    x = n % 10  # последнее число
+    y = n % 100 // 10  # предпоследнее число
     if y < x:
         flag = False
     n //= 10
