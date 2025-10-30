@@ -193,3 +193,165 @@ def print_sorted_hyphen(s):
 s = input().replace('-', ' ')
 print_sorted_hyphen(s)
 
+# Напишите функцию draw_triangle(fill, base), которая принимает два параметра:
+# fill – символ заполнитель;
+# base – величина основания равнобедренного треугольника; а затем выводит его.
+def draw_triangle(fill, base):
+    for i in range(1, n + 2):  # если основание нечетное, начинаем с ширины 1, если четное - 2.
+        print('*' * i)
+    for i in range(n, 0, -1):
+        print('*' * i)
+fill = input()  # символ-заполнитель
+base = int(input()) // 2  # ширина основания равнобедренного треугольника
+draw_triangle(fill, base)  # вызываем функцию
+
+def draw_triangle(fill, base):  # объявляем функцию
+    for i in range(1, base // 2 + 2):  # base - это целая часть от деления нечетного числа на 2,
+        # плюс прибавляем 2, так как верхняя граница не входит, включительно до середины равнобедренного
+        # треугольника
+        print(fill * i)  #
+    for i in range(base // 2, 0, -1):  # начинается со следующего числа после вершины,
+        # 0 не входит в последовательность, и отрицательный шаг
+        print(fill * i)
+fill = input()  # символ-заполнитель
+base = int(input())
+draw_triangle(fill, base)  # вызываем функцию
+
+def draw_triangle(fill, base):
+    for i in range(base // 2):
+        print(fill * (i + 1))
+    for i in range(base // 2, -1, -1):
+        print(fill * (i + 1))
+fill = input()  # символ-заполнитель
+base = int(input())
+draw_triangle(fill, base)  # вызываем функцию
+
+def draw_triangle(fill, base):
+    print(*[fill * (min(i, base + 1 - i)) for i in range(1, base + 1)], sep="\n")
+fill = input()  # символ-заполнитель
+base = int(input())
+draw_triangle(fill, base)  # вызываем функцию
+
+# Тимур живёт в Москве, а Антон – в Перми. Каждый раз, когда они договариваются о времени созвона,
+# Тимур говорит московское время, а Антону в уме приходится переводить его на пермское. Но иногда Антон
+# переводит время неправильно и опаздывает на созвон, из-за чего Тимур сильно злится. Разница по времени
+# между Москвой и Пермью составляет 2 часа (в Перми на 2 часа больше). Напишите функцию
+# print_perm_time_call(msc_time), которая принимает на вход строку – время созвона по московскому времени –
+# в формате hh:mm и выводит время созвона по пермскому времени в следующем формате: Созвон будет в HH:MM.
+# Где HH:MM – время созвона по пермскому времени. Гарантируется, что время созвона по московскому
+# времени будет не позднее 21:59.
+def print_perm_time_call(msc_time):
+    hourses = int(msc_time[:2])
+    minutes = msc_time[2:]
+    perm_time = hourses + 2
+    perm_time_str = f'{perm_time:02}'  # это способ записать число с ведущим нулем, если оно меньше 10:
+    # perm_time это число, которое мы форматируем, : это начало указания формата,
+    # 0 - мы заполняем пустое место нулями, 2 - общая длина строки должна быть 2 символа.
+    print(f'Созвон будет в {perm_time:02}{minutes}.')
+msc_time = input()
+print_perm_time_call(msc_time)
+
+def print_perm_time_call(msc_time):
+    msc_time = msc_time.split(':')  # разбиваем строку ввода на слова с разделителем ":"
+    h = msc_time[0]  # часы по московскому времени - индекс первого слова из списка msc_time
+    m = msc_time[1]  # минуты - индекс второго слова из списка msc_time
+    new_h = int(h) + 2  # часы по пермскому времени, московское время, переведенное в числовой регистр + 2
+    if new_h < 10:  # если пермское время меньше 10
+        new_h = '0' + str(new_h)  # преобразуем его в строку и добавляем впереди 0
+    print(f'Созвон будет в {new_h}:{m}.')
+msc_time = input()
+print_perm_time_call(msc_time)
+
+# Напишите функцию print_symbol_counts(s), которая принимает на вход слово s и выводит для каждой
+# буквы этого слова в лексикографическом порядке в нижнем регистре на отдельной строке количество её
+# вхождений в это слово в следующем формате:<L>: <N>, где <L> – некоторая буква слова s, <N> – количество
+# вхождений этой буквы в слово s. Если в слове встречается одна и та же буква в разных регистрах,
+# то мы считаем это одной и той же буквой.
+# объявление функции
+def print_symbol_counts(s):
+    s = s.lower()  # переводим в нижний регистр
+    unique_letters = []  # сюда будем добавлять буквы, которых еще не было
+    for ch in s:  # собираем список уникальных букв
+        if ch not in unique_letters:
+            unique_letters.append(ch)
+    for i in range(len(unique_letters)):  # сортировка пузырьком
+        for j in range(len(unique_letters) - i - 1):
+            if unique_letters[j] > unique_letters[j + 1]:
+                unique_letters[j], unique_letters[j + 1] = unique_letters[j + 1], unique_letters[j]
+    for ch in unique_letters:  # выводим количество каждой буквы
+        count = 0
+        for c in s:
+            if c == ch:
+                count += 1
+        print(f'{ch}: {count}')
+# считываем данные
+s = input()
+# вызываем функцию
+print_symbol_counts(s)
+
+
+def print_symbol_counts(s):
+    s = s.lower()  # меняем регистр на нижний
+    unique_letters = []  #с оздаем пустой список
+    for c in s:  # идем циклом по строке
+        if c not in unique_letters:  # если в списке нет буквы
+            unique_letters.append(c)  # добаляем буквы в новый список
+    unique_letters.sort()  # сортируем элементы нового списка по возрастанию
+    for c in unique_letters:  # проходим циклом по новому списку
+        counts = s.count(c)  # подсчитываем количество элементов
+        print(f'{c}: {counts}')
+s = input()
+print_symbol_counts(s)
+
+from collections import Counter
+def print_symbol_counts(s: str) -> None:
+    cnt = sorted(Counter(s.lower()).items())
+    print('\n'.join(f'{c}: {n}' for c, n in cnt))
+print_symbol_counts(input())
+
+
+# объявление функции
+def print_symbol_counts(s):
+    # приводим строку к нижнему регистру
+    s = s.lower()
+    # получаем уникальные буквы и сортируем их
+    res = sorted(set(s))
+    # подсчитываем количество вхождений каждой буквы
+    for char in res:
+        count = s.count(char)
+        print(f'{char}: {count}')
+# считываем данные
+s = input()
+# вызываем функцию
+print_symbol_counts(s)
+
+def print_symbol_counts(s):
+    lst = [0] * 31
+    base = ord('a') if ord(s[0]) < 1000 else ord('а')
+    for c in s.lower():
+        lst[ord(c) - base] += 1
+    for i in range(31):
+        if lst[i]:
+            print(f"{chr(i + base)}: {lst[i]}")
+s = input()
+print_symbol_counts(s)
+
+# Пример функции на основе загадки про слона и холодильник.
+def put_in_fridge(animal):  # animal - параметр
+    cnt = 1
+    print(cnt, '. Открыть холодильник.', sep='')
+    cnt += 1
+    if animal != 'жираф':
+        print(cnt, '. Достать оттуда жирафа.', sep='')
+        cnt += 1
+    print(cnt, '. Засунуть в холодильник ', animal, 'а.', sep='')
+    cnt += 1
+    print(cnt, '. Закрыть холодильник.', sep='')
+print('Что нужно сделать, чтобы засунуть в холодильник жирафа?')
+subject = 'жираф'
+put_in_fridge(subject)      # subject - аргумент
+print()
+print('Что нужно сделать, чтобы засунуть в холодильник слона?')
+subject = 'слон'
+put_in_fridge(subject)
+
