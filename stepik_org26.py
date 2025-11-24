@@ -1,3 +1,107 @@
+# Напишите функцию draw_triangle(), которая выводит звёздный равнобедренный треугольник
+# с основанием и высотой, равными 15 и 8 соответственно
+def draw_triangle():
+    for i in range(8):
+        print(' ' * (8 - 1 - i) + '*' * (1 + i * 2))
+draw_triangle()
+
+def draw_triangle():
+    m = 15
+    for i in range(1, m + 1, 2):
+        print(' ' * ((m - i) // 2) + '*' * i)
+draw_triangle()
+
+# Интернет-магазин осуществляет экспресс доставку для своих товаров по цене 1000 рублей за первый товар и
+# 120 рублей за каждый последующий товар. Напишите функцию get_shipping_cost(quantity), которая принимает
+# в качестве аргумента натуральное число quantity – количество товаров в заказе – и возвращает стоимость
+# доставки.
+def get_shipping_cost(quantity):
+    return 1000 + (quantity - 1) * 120
+n = int(input())
+print(get_shipping_cost(n))
+
+# Напишите функцию compute_binom(n, k), которая принимает в качестве аргументов два натуральных числа
+# n и k и возвращает значение биномиального коэффициента
+# Факториалом натурального числа n, называется произведение всех натуральных чисел от 1 до n, то есть:
+# n!=1⋅2⋅3⋅…⋅n
+from math import *
+def compute_binom(n, k):
+    return int(factorial(n)/(factorial(k) * factorial(n - k)))
+n = int(input())
+k = int(input())
+print(compute_binom(n, k))
+
+def factorial(m):
+    c = 1
+    for i in range(1, m+1):
+        c *= i
+    return c
+def compute_binom(n, k):
+    return (factorial(n)/(factorial(k)*(factorial(n-k))))
+n = int(input())
+k = int(input())
+print(compute_binom(n, k))
+
+# Напишите функцию number_to_words(num), которая принимает в качестве аргумента натуральное число num
+# и возвращает его словесное описание на русском языке. Число 1≤num≤99.
+def number_to_words(num):
+    s = ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать', 'двадцать', '']
+    s2 = ['двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто']
+    if num <= 20:
+        return s[num - 1]
+    else:
+        return s2[num // 10 - 2] + ' ' + s[num % 10 - 1]
+n = int(input())
+print(number_to_words(n))
+
+# Напишите функцию get_month(language, number), которая принимает на вход два аргумента language – язык
+# ru или en и number – номер месяца (от 1 до 12 включительно) и возвращает название месяца
+# на русском или английском языке.
+def get_month(language, number):
+    months_ru = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+    months_en = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+    if language == 'ru':
+        return months_ru[number - 1]
+    return months_en[number - 1]
+lan = input()
+num = int(input())
+print(get_month(lan, num))
+
+# Магическая дата – это дата, когда день, умноженный на месяц, равен числу, образованному последними
+# двумя цифрами года. Напишите функцию is_magic(date), которая принимает в качестве аргумента
+# строковое представление корректной даты и возвращает значение True, если дата является магической,
+# или False в противном случае.
+def is_magic(date):
+    s = date.split('.')
+    if int(s[0]) * int(s[1]) == int(s[2]) % 100:
+        return True
+    return False
+date = input()
+print(is_magic(date))
+
+# Панграмма – это фраза, содержащая в себе все буквы алфавита. Обычно панграммы используют для презентации
+# шрифтов, чтобы можно было в одной фразе рассмотреть все глифы. Напишите функцию is_pangram(text),
+# которая принимает в качестве аргумента строку текста на английском языке и возвращает значение True,
+# если текст является панграммой, или False в противном случае.
+def is_pangram(text):
+    s_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    text = text.replace(' ', '')
+    text = text.lower()
+    for i in s_list:
+        if i not in text:
+            return False
+    return True
+text = input()
+print(is_pangram(text))
+
+def is_pangram(text):
+    for i in range(97,123):
+        if not chr(i) in text.lower():
+            return False
+    return True
+text = input()
+print(is_pangram(text))
+
 flag = True   # флажок поднят
 while flag:   # пока флажок True, цикл работает
     text = input("Введите слово (или 'стоп'): ")
