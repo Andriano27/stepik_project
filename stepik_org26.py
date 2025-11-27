@@ -1,8 +1,10 @@
 # Напишите функцию draw_triangle(), которая выводит звёздный равнобедренный треугольник
 # с основанием и высотой, равными 15 и 8 соответственно
 def draw_triangle():
-    for i in range(8):
-        print(' ' * (8 - 1 - i) + '*' * (1 + i * 2))
+    for i in range(8):  # высота треугольника, количество рядов
+        print(' ' * (8 - 1 - i) + '*' * (1 + i * 2))  # печатаем пробел 8 - 1 раз и минус номер итерации i,
+        # соединяем строку пробелов со звездочками, количество которых на каждой итерации равно 1 + номер
+        # итерации i, умноженный на 2(1 + 0 * 2 = 1, 1 + 1 * 2 = 3 и т.д.)
 draw_triangle()
 
 def draw_triangle():
@@ -16,7 +18,9 @@ draw_triangle()
 # в качестве аргумента натуральное число quantity – количество товаров в заказе – и возвращает стоимость
 # доставки.
 def get_shipping_cost(quantity):
-    return 1000 + (quantity - 1) * 120
+    return 1000 + (quantity - 1) * 120  # возвращаем цену за первый товар 1000 и прибавляем количество
+    # товаров quantity минус один первый товар, умноженное на сумму каждой последующей покупки
+    # ((1 - 1) * 120 = 0, (2 - 1) * 120 = 120 и т.д.)
 n = int(input())
 print(get_shipping_cost(n))
 
@@ -24,16 +28,16 @@ print(get_shipping_cost(n))
 # n и k и возвращает значение биномиального коэффициента
 # Факториалом натурального числа n, называется произведение всех натуральных чисел от 1 до n, то есть:
 # n!=1⋅2⋅3⋅…⋅n
-from math import *
-def compute_binom(n, k):
-    return int(factorial(n)/(factorial(k) * factorial(n - k)))
+from math import *  # импортируем модуль math
+def compute_binom(n, k):  # объявляем функцию с двумя аргументами
+    return int(factorial(n)/(factorial(k) * factorial(n - k)))  # возвращаем целое число по формуле
 n = int(input())
 k = int(input())
 print(compute_binom(n, k))
 
 def factorial(m):
     c = 1
-    for i in range(1, m+1):
+    for i in range(1, m + 1):
         c *= i
     return c
 def compute_binom(n, k):
@@ -48,9 +52,11 @@ def number_to_words(num):
     s = ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать', 'двадцать', '']
     s2 = ['двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто']
     if num <= 20:
-        return s[num - 1]
+        return s[num - 1]  # выводим аргумент из списка s по индексу, минус 1, так как индекс с 0 начинается
     else:
-        return s2[num // 10 - 2] + ' ' + s[num % 10 - 1]
+        return s2[num // 10 - 2] + ' ' + s[num % 10 - 1]  # например: num = 33, 33 // 10 - 2 = 1 - выводим
+        # элемент из списка s2 по индексу 1, прибавляем пробел и прибавляем из второго списка s:
+        # 33 % 10 - 1 = 2 - элемент с индексом 2.
 n = int(input())
 print(number_to_words(n))
 
@@ -61,7 +67,7 @@ def get_month(language, number):
     months_ru = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
     months_en = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
     if language == 'ru':
-        return months_ru[number - 1]
+        return months_ru[number - 1]  # номер месяца минус 1 - так как индекс идет с 0
     return months_en[number - 1]
 lan = input()
 num = int(input())
@@ -72,7 +78,7 @@ print(get_month(lan, num))
 # строковое представление корректной даты и возвращает значение True, если дата является магической,
 # или False в противном случае.
 def is_magic(date):
-    s = date.split('.')
+    s = date.split('.')  # собираем вводимую дату в список через точку '.'
     if int(s[0]) * int(s[1]) == int(s[2]) % 100:
         return True
     return False
@@ -85,8 +91,8 @@ print(is_magic(date))
 # если текст является панграммой, или False в противном случае.
 def is_pangram(text):
     s_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-    text = text.replace(' ', '')
-    text = text.lower()
+    text = text.replace(' ', '')  # убираем пробелы в строке
+    text = text.lower()  # делаем маленький шрифт
     for i in s_list:
         if i not in text:
             return False
