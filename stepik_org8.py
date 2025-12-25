@@ -1,3 +1,22 @@
+num = 813
+while num > 0:
+    last_digit = num % 10
+    num //= 10
+    print(last_digit, sep='=', end='')
+
+num = 725
+while num != 0:
+    last_digit = num % 10
+    num //= 10
+    print(last_digit, sep='', end='$')
+
+num = 586
+while num > 0:
+    last_digit = num % 10
+    print(last_digit, sep='*', end='#')
+    num //= 10
+    print()
+
 # 7 - ка считывается, поскольку условие if i > 6: break находится после  print(i, end='*').
 # Т.е., сначала считывается семерка, а потом уже сравнивается с 6 - кой и
 # после этого прерывается выполнение условия
@@ -267,5 +286,94 @@ print(counter)  # Затем temp = 100. Далее снова работает 
 # Будет тоже выполнено 3 условия (101 >0, 10>0, 1>0)
 # По итогу работы вложенного цикла while с числами 99, 100, 101 счетчик counter = 8 (2 + 3 + 3)
 
+# У Тимура есть список никнеймов соцсети FriendsGram. Напишите программу, которая выводит первый никнейм,
+# не содержащий символ нижнего подчёркивания _. Программа должна вывести первый никнейм,
+# не содержащий символ нижнего подчёркивания _.
+flag = False
+while not flag:
+    text = input()
+    if '_' not in text:
+        print(text)
+        flag = True
 
+name = input()
+while '_' in name:
+    name = input()
+print(name)
+
+print(next(name for name in iter(input, '') if '_' not in name))
+
+while True:
+    nickname = input()
+    if "_" not in nickname:
+        print(nickname)
+        break
+
+# Напишите программу, которая выводит, сколько людей стоят в очереди между Александрой и Левоном.
+name_alex = 0
+name_levon = 0
+counter = 0
+while True:
+    name = input()
+    counter += 1
+    if name == "Александра":
+        name_alex = counter
+    if name == "Левон":
+        name_levon = counter
+        break
+print(name_levon - name_alex - 1)
+
+name = input()
+while name != 'Александра':
+    name = input()
+name = input()
+cnt = 0
+while name != 'Левон':
+    cnt += 1
+    name = input()
+print(cnt)
+
+NAMES = []
+while "Левон" not in NAMES:
+    NAMES.append(input())
+print(NAMES.index("Левон") - NAMES.index("Александра") - 1)
+
+# На вход программе подаются четыре целых числа h1, h2, m1, m2, которые задают временной промежуток
+# от h₁:m₁ до h₂:m₂. Напишите программу, которая выводит все моменты времени между этими промежутками
+# (включая границы) в формате hh:mm с интервалом в 1 минуту, каждый на отдельной строке.
+h1 = int(input())
+m1 = int(input())
+h2 = int(input())
+m2 = int(input())
+start = h1 * 60 + m1
+end = h2 * 60 + m2
+while start <= end:
+    h = start // 60
+    m = start % 60
+    if h < 10:
+        h = '0' + str(h)
+    else:
+        h = str(h)
+    if m < 10:
+        m = '0' + str(m)
+    else:
+        m = str(m)
+    print(h, m, sep=':')
+    start += 1
+
+h1 = int(input())
+m1 = int(input())
+h2 = int(input())
+m2 = int(input())
+start = h1 * 60 + m1
+end = h2 * 60 + m2
+while start <= end:
+    h = start // 60
+    m = start % 60
+    print(f"{h:02d}:{m:02d}")  # d - число, 2 - минимум 2 символа, 0 - если не хватает, добавить 0 слева
+    start += 1
+
+h1, m1, h2, m2 = map(int, open(0))
+for x in range(h1 * 60 + m1, h2 * 60 + m2 + 1):
+    print(f'{x // 60:02}:{x % 60:02}')
 

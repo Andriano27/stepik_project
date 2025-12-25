@@ -33,7 +33,7 @@ def from_decimal_system():
         num //= system
 
     print('Число в выбранной системе счисления:')
-    print(*num_list[::-1], sep ='')
+    print(*num_list[::-1], sep='')
 
 def to_decimal_system():
     while True:
