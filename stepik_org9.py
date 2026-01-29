@@ -395,4 +395,35 @@ for i in range(a, b + 1):  # перебираем числа из диапазо
     if flag == True and i != 1:  # если флаг все еще поднят
         print(i)  # то печатаем i
 
+# На вход программе подаётся натуральное число n(n>0). Найдите все моменты времени, для которых
+# выполняется данная формула: h**n = m, и выведите их в порядке возрастания в формате hh:mm,
+# каждый на отдельной строке. Программа должна вывести в формате hh:mm все моменты времени
+# в соответствии с условием задачи.
+n = int(input())
+for i in range(24):
+    for j in range(60):
+        if i ** n == j and i < 10 and j < 10:
+            print(f'0{i}:0{j}')
+        if i ** n == j and i < 10 and j > 9:
+            print(f'0{i}:{j}')
+        if i ** n == j and j < 10 and i > 9:
+            print(f'{i}:0{j}')
+        if i ** n == j and i > 9 and j > 9:
+            print(f'{i}:{j}')
+
+n = int(input())
+for h in range(24):
+    for m in range(60):
+        if h**n == m:
+            if h < 10:
+                h = '0' + str(h)
+            if m < 10:
+                m = '0' + str(m)
+            print(h, m, sep=':')
+            h, m = int(h), int(m)
+
+n = int(input())
+for h in range(24):
+    if 0 <= (m := h ** n) < 60:
+        print(f'{h:02}:{m:02}')
 
