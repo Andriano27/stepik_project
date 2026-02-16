@@ -427,3 +427,56 @@ for h in range(24):
     if 0 <= (m := h ** n) < 60:
         print(f'{h:02}:{m:02}')
 
+# Напишите программу для вычисления и оценки индекса массы тела (ИМТ) человека.
+# ИМТ показывает, человек весит больше или меньше нормы для своего роста. Масса человека считается
+# оптимальной, если его ИМТ находится между 18.5 и 25. Если ИМТ меньше 18.5, то считается,
+# что человек весит ниже нормы. Если значение ИМТ больше 25, то считается, что человек весит больше нормы.
+weight = float(input())
+height= float(input())
+bmi = weight / (height ** 2)
+if 18.5 <= bmi <= 25:
+    print('Оптимальная масса')
+elif bmi < 18.5:
+    print('Недостаточная масса')
+elif bmi > 25:
+    print('Избыточная масса')
+
+
+class Human():
+    def __init__(self, height, weight):
+        self.height = height
+        self.weight = weight
+    @staticmethod
+    def check(value):
+        if not isinstance(value, (int, float)) or value < 0:
+            raise TypeError("Значение роста и веса человека должно быть неотрицательным числом")
+    @property
+    def height(self):
+        return self.__height
+    @height.setter
+    def height(self, height_value):
+        self.check(height_value)
+        self.__height = height_value
+        self.__body_mass_index = None
+    @property
+    def weight(self):
+        return self.__weight
+    @weight.setter
+    def weight(self, weight_value):
+        self.check(weight_value)
+        self.__weight = weight_value
+        self.__body_mass_index = None
+    @property
+    def body_mass_index(self):
+        if self.__body_mass_index is None:
+            self.__body_mass_index = self.weight / self.height ** 2
+        return self.__body_mass_index
+    def display_bmi(self):
+        if self.body_mass_index < 18.5:
+            print("Недостаточная масса")
+        elif self.body_mass_index > 25:
+            print("Избыточная масса")
+        else:
+            print("Оптимальная масса")
+weight, height = float(input()), float(input())
+Human(height, weight).display_bmi()
