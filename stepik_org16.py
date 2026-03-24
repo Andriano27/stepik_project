@@ -362,3 +362,69 @@ for i in range(n):
         y.append(z)
 print(y)
 
+# Алгоритм выводит в конце предложения следующую в алфавитном порядке букву, если она встречается в
+# строке текста, а очередную строку отображает уже без этой буквы. На вход программе подается одно слово,
+# записанное строчными русскими буквами без буквы "ё". Программа должна вывести в соответствии с
+# указанным алгоритмом строки, количество строк равно количеству разных букв в строке, которая
+# получается путем конкатенации введенного слова и строки "запретил букву".
+word = input() + ' запретил букву'
+alphabet = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
+for letter in alphabet:
+    if letter in word:
+        print(''.join(word.strip()), letter)  # word.strip разбивает строку на слова и убирает лишние
+        # пробелы,' '.join собирает строку обратно с одним пробелом между словами
+        word = word.replace(letter, '')  # убираем букву
+        word = ' '.join(word.split())  # нормализуем пробелы после удаления буквы
+
+
+word = input() + ' запретил букву'
+alpha = [chr(i) for i in range(1072, 1104)]
+for letter in alpha:
+    if letter in word:
+        print(word, letter)
+        word = word.replace(letter, '').replace('  ', ' ').strip()
+
+
+word = input() + ' запретил букву'
+for i in range(1072, 1104):
+    if chr(i) in word:
+        print(word + ' ' + chr(i))
+        word = ' '.join(word.replace(chr(i), '').split())
+
+
+word = input() + ' запретил букву'
+a = ['а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+for i in range(len(a)):
+    if a[i] in word:
+        print(word, a[i])
+        word = word.replace(a[i], '')
+        word = word.strip()
+        word = word.replace('  ', ' ')
+
+
+word = input() + ' запретил букву'
+b = ['а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+for i in b:
+    if i in word:
+        print(*(word.split()), i)
+        word = (''.join(word.split(i)))
+
+
+def song(word):
+    def find_next_letter(check):   # функция поиска следующей буквы
+        clean_word = ''.join(check.split())
+        return chr(min([ord(i) for i in clean_word]))
+    def song_stop(check, symbol):   # функция стоп для цикла while
+        clean_word = ''.join(check.split())
+        for i in clean_word:
+            if i != symbol:
+                return False
+        return True
+    word = word + ' запретил букву'   # цикл вывода на печать
+    letter = find_next_letter(word)
+    while song_stop(word, letter) is False:
+        print(word, letter)
+        word = ' '.join(word.replace(letter, '').split())
+        letter = find_next_letter(word)
+    print(word, letter)
+song(input())
